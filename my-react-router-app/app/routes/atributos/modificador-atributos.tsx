@@ -1,5 +1,13 @@
-import { ComboBox, DropDownList, DropDownTree } from "@progress/kendo-react-dropdowns"
 import { useState, useEffect } from "react"
+import { Label } from "@progress/kendo-react-labels"
+import {
+  Input,
+  NumericTextBox,
+  Checkbox,
+  TextArea,
+} from "@progress/kendo-react-inputs"
+import { DropDownList } from "@progress/kendo-react-dropdowns"
+import { Button } from "@progress/kendo-react-buttons"
 
 export default function AtributoForm() {
   const [formData, setFormData] = useState({
@@ -36,21 +44,10 @@ export default function AtributoForm() {
       })
   }, [])
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    const { name, value } = e.target
+  const handleChange = (field: string, value: any) => {
     setFormData((prev) => ({
       ...prev,
-      [name]: value,
-    }))
-  }
-
-  const handleUnidadChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const unidadSeleccionada = e.target.value
-    setFormData((prev) => ({
-      ...prev,
-      strUniMeds: [unidadSeleccionada],
+      [field]: value,
     }))
   }
 
@@ -98,121 +95,102 @@ export default function AtributoForm() {
   }
 
   return (
-    <div className="min-h-screen bg-yellow-500 text-black p-6">
+    <div className="p-6">
       <div className="max-w-xl mx-auto bg-white shadow-lg rounded-xl p-6">
-        <h1 className="text-3xl font-bold mb-6 text-center">
-          ABM de Atributos
+        <h1 className="text-2xl font-bold mb-6 text-center">
+          ABM de Atributos (KendoReact)
         </h1>
+
         <form onSubmit={handleSubmit} className="grid gap-4">
-          <input
-            type="number"
-            name="idAtributo"
-            placeholder="ID (0 para crear)"
-            value={formData.idAtributo}
-            onChange={handleChange}
-            className="border border-black p-2 rounded"
-          />
-          <input
-            type="text"
-            name="nombre"
-            placeholder="Nombre"
-            value={formData.nombre}
-            onChange={handleChange}
-            className="border border-black p-2 rounded"
-          />
-          <input
-            type="text"
-            name="nombreCorto"
-            placeholder="Nombre Corto"
-            value={formData.nombreCorto}
-            onChange={handleChange}
-            className="border border-black p-2 rounded"
-          />
-          <select
-            name="tipoValor"
-            value={formData.tipoValor}
-            onChange={handleChange}
-            className="border border-black p-2 rounded"
-          >
-            <option value="Numerico">Numérico</option>
-            <option value="Texto">Texto</option>
-            <option value="Lista">Lista</option>
-          </select>
-          <input
-            type="text"
-            name="valorMinimo"
-            placeholder="Valor Mínimo"
-            value={formData.valorMinimo}
-            onChange={handleChange}
-            className="border border-black p-2 rounded"
-          />
-          <input
-            type="text"
-            name="valorMaximo"
-            placeholder="Valor Máximo"
-            value={formData.valorMaximo}
-            onChange={handleChange}
-            className="border border-black p-2 rounded"
-          />
-       {/*    <select
-            value={formData.strUniMeds[0] || ""}
-            onChange={handleUnidadChange}
-            className="border border-black p-2 rounded"
-          >
-            <option value="">Seleccione una unidad</option>
-            {unidades.map((codigo) => (
-              <option key={codigo} value={codigo}>
-                {codigo}
-              </option>
-            ))}
-          </select> */}
-          <ComboBox 
-            data={unidades} 
-            onChange={(e) => {
-              const value = e.target.value;
-              setFormData((prev) => ({
-                ...prev,
-                strUniMeds: [value],
-              }));
-            }}
+          <Label>
+            ID Atributo
+            <NumericTextBox
+              value={formData.idAtributo}
+              onChange={(e) => handleChange("idAtributo", e.value || 0)}
+              format="n0"
+              placeholder="0 para crear"
             />
-          <input
-            type="text"
-            name="comentario"
-            placeholder="Comentario"
-            value={formData.comentario}
-            onChange={handleChange}
-            className="border border-black p-2 rounded"
-          />
-          <label className="flex items-center gap-2">
-            <input
-              type="checkbox"
+          </Label>
+
+          <Label>
+            Nombre
+            <Input
+              value={formData.nombre}
+              onChange={(e) => handleChange("nombre", e.target.value)}
+            />
+          </Label>
+
+          <Label>
+            Nombre Corto
+            <Input
+              value={formData.nombreCorto}
+              onChange={(e) => handleChange("nombreCorto", e.target.value)}
+            />
+          </Label>
+
+          <Label>
+            Tipo de Valor
+            <DropDownList
+              data={["Numerico", "Texto", "Lista"]}
+              value={formData.tipoValor}
+              onChange={(e) => handleChange("tipoValor", e.value)}
+            />
+          </Label>
+
+          <Label>
+            Valor Mínimo
+            <Input
+              value={formData.valorMinimo}
+              onChange={(e) => handleChange("valorMinimo", e.target.value)}
+            />
+          </Label>
+
+          <Label>
+            Valor Máximo
+            <Input
+              value={formData.valorMaximo}
+              onChange={(e) => handleChange("valorMaximo", e.target.value)}
+            />
+          </Label>
+
+          <Label>
+            Unidad de Medida
+            <DropDownList
+              data={unidades}
+              value={formData.strUniMeds[0] || ""}
+              onChange={(e) => handleChange("strUniMeds", [e.value])}
+            />
+          </Label>
+
+          <Label>
+            Comentario
+            <TextArea
+              value={formData.comentario}
+              onChange={(e) => handleChange("comentario", e.value)}
+              rows={3}
+            />
+          </Label>
+
+          <Label>
+            <Checkbox
               checked={formData.activo}
-              onChange={(e) =>
-                setFormData((prev) => ({ ...prev, activo: e.target.checked }))
-              }
+              onChange={(e) => handleChange("activo", e.value)}
             />
             Activo
-          </label>
+          </Label>
 
-          {/* Botón Guardar */}
-          <button
-            type="submit"
-            className="border border-black px-4 py-2 rounded font-bold 
-                       hover:bg-blue-500 hover:text-white transition-colors"
-          >
+          <Button type="submit" themeColor="primary">
             Guardar
-          </button>
+          </Button>
         </form>
 
-        {/* Botón Obtener Atributos */}
-        <button
+        <Button
           onClick={handleGetAtributos}
-          className="border border-black px-4 py-2 rounded font-bold mt-4
-                     hover:bg-green-500 hover:text-white transition-colors"
+          themeColor="success"
+          className="mt-4"
         >
           📥 Obtener Atributos
-        </button>
+        </Button>
 
         {error && <p className="text-red-600 mt-4">❌ {error}</p>}
         {message && <p className="text-green-700 mt-4">{message}</p>}
