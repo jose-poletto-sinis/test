@@ -1,3 +1,4 @@
+import { ComboBox, DropDownList, DropDownTree } from "@progress/kendo-react-dropdowns"
 import { useState, useEffect } from "react"
 
 export default function AtributoForm() {
@@ -153,7 +154,7 @@ export default function AtributoForm() {
             onChange={handleChange}
             className="border border-black p-2 rounded"
           />
-          <select
+       {/*    <select
             value={formData.strUniMeds[0] || ""}
             onChange={handleUnidadChange}
             className="border border-black p-2 rounded"
@@ -164,7 +165,17 @@ export default function AtributoForm() {
                 {codigo}
               </option>
             ))}
-          </select>
+          </select> */}
+          <ComboBox 
+            data={unidades} 
+            onChange={(e) => {
+              const value = e.target.value;
+              setFormData((prev) => ({
+                ...prev,
+                strUniMeds: [value],
+              }));
+            }}
+            />
           <input
             type="text"
             name="comentario"
