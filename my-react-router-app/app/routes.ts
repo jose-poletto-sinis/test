@@ -11,5 +11,6 @@ export default [
     index("routes/home.tsx"),
   ]),
     route("kendo", "routes/atributos/modificador-kendo.tsx"),
+    route("local-data", "routes/local-data.tsx"),
 ] satisfies RouteConfig
 
