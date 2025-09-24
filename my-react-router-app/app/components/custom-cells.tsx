@@ -35,7 +35,7 @@ export const PersonCell = (props: GridCustomCellProps) => {
     const { dataItem } = props;
 
     if (!dataItem || !dataItem.image) {
-        return <td {...props.tdProps}>{dataItem?.full_name}</td>;
+        return dataItem.full_name;
     }
 
     const imageDataUrl = dataItem.image.replace(/url\('(.*)'\)/, '$1');
@@ -112,3 +112,4 @@ export const CountryCell = (props: GridCustomCellProps) => {
         </td>
     );
 };
+

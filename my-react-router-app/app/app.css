@@ -132,3 +132,12 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+.contact-img {
+  border-radius: 50%;
+  object-fit: cover;
+  width: 34px;
+  height: 34px;
+  vertical-align: middle;
+  margin-right: 8px;
+}
