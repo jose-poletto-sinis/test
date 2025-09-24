@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Grid, GridColumn as Column } from '@progress/kendo-react-grid';
 import { Loader } from '@progress/kendo-react-indicators';
+import { Outlet, useNavigate } from 'react-router';
 
 // 🎯 Estilos para el loader
 const styles = {
@@ -15,6 +16,7 @@ const DATA_ITEM_KEY = 'id';
 const LocalDataGrid = () => {
     const [users, setUsers] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
         setLoading(true);
@@ -70,7 +72,29 @@ const LocalDataGrid = () => {
 
     return (
         <>
-            <h2>📊 Local Data Grid</h2>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
+                <h2 style={{ margin: 0 }}>📊 Local Data Grid</h2>
+                <button
+                    style={{
+                        padding: '4px 10px',
+                        fontSize: '0.95rem',
+                        borderRadius: 5,
+                        border: '1px solid #ccc',
+                        background: '#f5f5f5',
+                        cursor: 'pointer',
+                        transition: 'transform 0.15s',
+                        minWidth: 0,
+                    }}
+                    onMouseOver={e => (e.currentTarget.style.transform = 'scale(1.12)')}
+                    onMouseOut={e => (e.currentTarget.style.transform = 'scale(1)')}
+                    onClick={() => {
+                        // Aquí puedes manejar la lógica para abrir el popup
+                        navigate('nuevo');
+                    }}
+                >
+                    cargar nuevo atributo
+                </button>
+            </div>
             <Grid
                 loader={customLoader}
                 showLoader={loading}
@@ -83,6 +107,7 @@ const LocalDataGrid = () => {
                 <Column field="activo" title="Address" />
                 <Column field="codigoNombre" title="Zipcode" />
             </Grid>
+            <Outlet />
         </>
     );
 };
