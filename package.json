@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@progress/kendo-licensing": "^1.7.1",
     "@progress/kendo-react-dropdowns": "^12.0.2",
     "@progress/kendo-react-excel-export": "^12.0.2",
     "@progress/kendo-react-pdf": "^12.0.2",

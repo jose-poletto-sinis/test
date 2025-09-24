@@ -16,7 +16,7 @@ body {
     color-scheme: dark;
   }
 }
-
+/* --- Reset & base styles --- */
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);

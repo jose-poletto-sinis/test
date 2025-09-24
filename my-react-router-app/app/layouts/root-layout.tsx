@@ -1,5 +1,6 @@
 import React from "react"
 import { Outlet } from "react-router"
+import Navbar from "../components/Navbar"
 import { ThemeProvider } from "~/components/theme-provider"
 import { ThemeToggle } from "~/components/theme-toggle"
 
@@ -12,6 +13,8 @@ export default function RootLayout() {
           <ThemeToggle />
         </header>
 
+        {/* Navbar global */}
+        <Navbar />
         {/* Contenido principal */}
         <main className="flex-1">
           <Outlet />
