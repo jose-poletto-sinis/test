@@ -93,7 +93,13 @@ const LocalDataGrid = () => {
             </td>
         );
     };
-    
+    const CustomNuevaColumnaCell = (props: any) => {
+        return (
+            <td {...props.tdProps} style={{ textAlign: 'center', fontWeight: 'bold' }}>
+                {props.dataItem.nuevaColumna}
+            </td>
+        );
+    };
 
     const customLoader = (
         <div className="k-loading-mask">
@@ -155,7 +161,7 @@ const LocalDataGrid = () => {
             >
                 <Column field="idAtributo" title="ID" width="70px" />
                 <Column title="Nueva" width="120px"  cells={{ data: CustomNuevaCell }} />
-                
+                <Column field="nuevaColumna" title="#" width="70px" cells={{ data: CustomNuevaColumnaCell }} />
                 <Column field="nombre" title="Nombre" width="250px" />
                 <Column field="nombreCorto" title="Nom corto" />
                 <Column field="tipoValor" title="Tipo valor" />
