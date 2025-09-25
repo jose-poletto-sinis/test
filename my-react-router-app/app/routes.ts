@@ -8,7 +8,9 @@ export default [
       route("register", "routes/auth/register.tsx"),
     ]),
     index("routes/home.tsx"),
+    route("lista-atributos", "routes/lista-atributos.tsx", [
+      route("delete/:id", "routes/forms/form-delete.tsx"),
+    ]),
   ]),
-  route("lista-atributos", "routes/lista-atributos.tsx"),
 ] satisfies RouteConfig
 
