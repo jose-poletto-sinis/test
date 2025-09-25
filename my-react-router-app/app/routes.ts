@@ -8,13 +8,7 @@ export default [
       route("register", "routes/auth/register.tsx"),
     ]),
     index("routes/home.tsx"),
-    layout("routes/local-data-router.tsx", [
-      route("local-data", "routes/local-data.tsx", [
-        route("nuevo", "routes/UpdateAtributo.tsx"),
-      ]),
-    ]),
   ]),
-  route("kendo", "routes/atributos/modificador-kendo.tsx"),
-  
+  route("lista-atributos", "routes/lista-atributos.tsx"),
 ] satisfies RouteConfig
 
