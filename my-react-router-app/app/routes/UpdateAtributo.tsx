@@ -11,10 +11,12 @@ export default function UpdateAtributo() {
     return (
         <>
             <UIButton onClick={() => { navigate(-1) }}>Volver</UIButton>
-            <Dialog title={'Modificar Atributo'} onClose={() => navigate(-1)} style={{ minWidth: 360 }}>
-                <AtributoForm />
+            <Dialog title={'Modificar Atributo'} onClose={() => { window.dispatchEvent(new Event('reload-atributos')); navigate(-1); }} style={{ minWidth: 200 }}>
+                <div style={{ maxHeight: '90vh', overflowY: 'auto', paddingRight: 8 }}>
+                    <AtributoForm />
+                </div>
                 <DialogActionsBar>
-                    <Button type="button" onClick={() => navigate(-1)}>
+                    <Button type="button" onClick={() => { window.dispatchEvent(new Event('reload-atributos')); navigate(-1); }}>
                         Cerrar
                     </Button>
                 </DialogActionsBar>

@@ -11,6 +11,7 @@ export default [
     layout("routes/local-data-router.tsx", [
       route("local-data", "routes/local-data.tsx", [
         route("nuevo", "routes/UpdateAtributo.tsx"),
+        route("eliminar/:idAtributo", "routes/atributos/eliminar-atribuoto.tsx"),
       ]),
     ]),
   ]),
