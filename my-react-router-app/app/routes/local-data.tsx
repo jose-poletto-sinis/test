@@ -22,7 +22,7 @@ const LocalDataGrid = () => {
         setLoading(true);
         console.log('🔄 Iniciando fetch de datos...');
 
-        fetch('/api/Atributos/GetMarcas')
+        fetch('/api/Atributos/GetAtributos')
             .then((response) => {
                 console.log('📥 Respuesta recibida de la API:', response);
                 return response.json();
@@ -101,11 +101,15 @@ const LocalDataGrid = () => {
                 style={{ height: '400px', marginBottom: 40 }}
                 data={users}
             >
-                <Column field="idMarcaProduct" title="ID" width="40px" />
-                <Column field="codigo" title="Name" width="250px" />
-                <Column field="nombre" title="Email" />
-                <Column field="activo" title="Address" />
-                <Column field="codigoNombre" title="Zipcode" />
+                <Column field="idAtributo" title="ID" width="40px" />
+                <Column field="nombre" title="Nombre" width="250px" />
+                <Column field="nombreCorto" title="Nom corto" />
+                <Column field="tipoValor" title="Tipo valor" />
+                <Column field="valorMinimo" title="Valor Min" />
+                <Column field="valorMaximo" title="Valor Max" />
+                <Column field="strUniMeds" title="Valor Max" />
+                <Column field="comentario" title="Comentario" />
+                <Column field="activo" title="activo" />
             </Grid>
             <Outlet />
         </>
