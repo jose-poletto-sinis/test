@@ -6,13 +6,13 @@ import tsconfigPaths from "vite-tsconfig-paths";
 export default defineConfig({
   plugins: [tailwindcss(), reactRouter(), tsconfigPaths()],
   server: {
-    proxy: {
+   /*  proxy: {
       "/api": {
         target: "https://appcms.desarrollo.dnscheck.com.ar",
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
-    },
+    }, */
   },
 });

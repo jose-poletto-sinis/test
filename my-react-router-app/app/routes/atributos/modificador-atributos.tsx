@@ -79,6 +79,9 @@ export default function AtributoForm() {
       } else {
         setMessage("✅ Objeto actualizado correctamente.")
       }
+
+      //window.dispatchEvent(new Event('reload-atributos'));
+
     } catch (err: any) {
       setError(err.message)
     }

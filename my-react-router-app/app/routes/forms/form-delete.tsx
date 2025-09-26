@@ -1,10 +1,26 @@
 import React from "react";
-import { useParams, useNavigate } from "react-router";
+import { useParams, useNavigate, redirect, useActionData } from "react-router";
 import { Dialog } from '@progress/kendo-react-dialogs';
+
+
+export const action = async ({ params }: { params: { id: string } }) => {
+	const { id } = params;
+	const resultado = await fetch(`https://appcms.desarrollo.dnscheck.com.ar/Atributos/DeleteAtributo/IdAtributo/${encodeURIComponent(id)}`, {
+		method: 'DELETE',
+		headers: { 'Content-Type': 'application/json' }
+	});
+
+	if (!resultado.ok) {
+		return { status: resultado.status, statusText: 'Error al eliminar el atributo' };
+	}
+	return redirect('/lista-atributos');
+}
+
 
 const FormDelete = () => {
 	const { id } = useParams();
 	const navigate = useNavigate();
+	const { status, statusText } = useActionData() || {};
 
 	const reloadAndClose = () => {
 		window.dispatchEvent(new Event('reload-atributos'));
@@ -12,16 +28,11 @@ const FormDelete = () => {
 	};
 
 	const handleDelete = async () => {
-		if (!id) return;
-		try {
-			await fetch(`/api/Atributos/DeleteAtributo/IdAtributo/${encodeURIComponent(id)}`, {
-				method: 'DELETE',
-				headers: { 'Content-Type': 'application/json' }
-			});
-			reloadAndClose();
-		} catch (e) {
-			alert('Error al eliminar el atributo');
-		}
+			const form = document.createElement('form');
+			form.method = 'post';
+			form.action = `/forms/form-delete/${id}`;
+			document.body.appendChild(form);
+			form.submit();
 	};
 
 	return (
@@ -38,6 +49,11 @@ const FormDelete = () => {
 						onClick={reloadAndClose}
 					>Rechazar</button>
 				</div>
+				{status && (
+					<p style={{ color: 'red', marginTop: 16 }}>
+						{statusText} (Código: {status})
+					</p>
+				)}
 			</div>
 		</Dialog>
 	);

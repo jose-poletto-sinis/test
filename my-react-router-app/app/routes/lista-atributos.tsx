@@ -12,7 +12,7 @@ const ListaAtributos = () => {
   // Función para cargar los datos
   const loadData = () => {
     setLoading(true);
-    fetch('/api/Atributos/GetAtributos')
+    fetch('https://appcms.desarrollo.dnscheck.com.ar/Atributos/GetAtributos')
       .then(res => res.json())
       .then(json => {
         setData(Array.isArray(json) ? json : []);
