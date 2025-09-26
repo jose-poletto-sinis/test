@@ -9,15 +9,28 @@ const ListaAtributos = () => {
   const [data, setData] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+  // Función para cargar los datos
+  const loadData = () => {
     setLoading(true);
     fetch('/api/Atributos/GetAtributos')
       .then(res => res.json())
       .then(json => {
-        return setData(Array.isArray(json) ? json : []);
+        setData(Array.isArray(json) ? json : []);
       })
       .catch(() => setData([]))
       .finally(() => setLoading(false));
+  };
+
+  useEffect(() => {
+    loadData();
+    // Escucha el evento personalizado para recargar datos
+    function handleReloadEvent() {
+      loadData();
+    }
+    window.addEventListener('reload-atributos', handleReloadEvent);
+    return () => {
+      window.removeEventListener('reload-atributos', handleReloadEvent);
+    };
   }, []);
 
   const navigate = useNavigate();
@@ -26,7 +39,7 @@ const ListaAtributos = () => {
     <td style={{ textAlign: 'center' }}>
       <button
         style={{ background: '#43a047', color: '#fff', border: 'none', borderRadius: 4, padding: '6px 12px', marginRight: 8, cursor: 'pointer' }}
-        onClick={() => alert(`Editar atributo ${props.dataItem.idAtributo}`)}
+        onClick={() => navigate(`updateatributo/${props.dataItem.idAtributo}`)}
       >
         Edit
       </button>

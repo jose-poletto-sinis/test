@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { useParams } from "react-router";
 import { Label } from "@progress/kendo-react-labels"
 import {
   Input,
@@ -10,8 +11,9 @@ import { DropDownList } from "@progress/kendo-react-dropdowns"
 import { Button } from "@progress/kendo-react-buttons"
 
 export default function AtributoForm() {
+  const { id } = useParams();
   const [formData, setFormData] = useState({
-    idAtributo: 0,
+    idAtributo: id ? Number(id) : 0,
     nombre: "",
     nombreCorto: "",
     tipoValor: "Numerico",
@@ -106,7 +108,7 @@ export default function AtributoForm() {
             ID Atributo
             <NumericTextBox
               value={formData.idAtributo}
-              onChange={(e) => handleChange("idAtributo", e.value || 0)}
+              disabled={true}
               format="n0"
               placeholder="0 para crear"
             />

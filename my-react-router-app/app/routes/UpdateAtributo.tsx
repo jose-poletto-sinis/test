@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router";
+import { Outlet, useNavigate } from "react-router";
 import { Button as UIButton } from "~/components/ui/button";
 import { Button } from '@progress/kendo-react-buttons';
 import { Dialog, DialogActionsBar } from '@progress/kendo-react-dialogs';
@@ -19,6 +19,7 @@ export default function UpdateAtributo() {
                     </Button>
                 </DialogActionsBar>
             </Dialog>
+            
         </>
     );
 }

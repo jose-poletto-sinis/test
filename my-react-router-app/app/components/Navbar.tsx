@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router';
 
 const navLinks = [
   { to: '/', label: 'Inicio' },
-  { to: '/local-data', label: 'Local Data' },
+  { to: '/lista-atributos', label: 'Local Data' },
   { to: '/atributos', label: 'Atributos' },
   { to: '/kendo', label: 'Kendo' },
   { to: '/updateatributo', label: 'Update Atributo' },

@@ -10,6 +10,7 @@ export default [
     index("routes/home.tsx"),
     route("lista-atributos", "routes/lista-atributos.tsx", [
       route("delete/:id", "routes/forms/form-delete.tsx"),
+      route("updateatributo/:id", "routes/UpdateAtributo.tsx"),
     ]),
   ]),
 ] satisfies RouteConfig
