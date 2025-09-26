@@ -97,8 +97,8 @@ export default function AtributoForm() {
   }
 
   return (
-    <div className="p-6">
-      <div className="max-w-xl mx-auto bg-white shadow-lg rounded-xl p-6">
+    <div className="p-6" style={{ maxHeight: '80vh', overflowY: 'auto' }}>
+      <div className="max-w-2xl mx-auto bg-white shadow-lg rounded-xl p-6" style={{ minWidth: 400 }}>
         <h1 className="text-2xl font-bold mb-6 text-center">
           ABM de Atributos (KendoReact)
         </h1>

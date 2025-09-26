@@ -79,6 +79,15 @@ const ListaAtributos = () => {
 
         <Column title="Acciones" width="160px" cells={{ data: CustomActionsCell }} />
       </Grid>
+      {/* Aquí se va a desplegar el formulario para cargar un nuevo atributo */}
+      <div style={{ marginTop: 24, textAlign: 'center' }}>
+        <button
+          style={{ background: '#1976d2', color: '#fff', border: 'none', borderRadius: 4, padding: '10px 24px', fontSize: '1rem', cursor: 'pointer' }}
+          onClick={() => navigate('updateatributo/0')}
+        >
+          Cargar nuevo atributo
+        </button>
+      </div>
       <Outlet />
     </>
   );
